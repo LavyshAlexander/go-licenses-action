@@ -1,0 +1,33 @@
+name: 'Go Licenses Checker'
+author: 'l'
+description: 'Check licenses in your go package and its dependencies'
+
+inputs:
+  allowedLicenses:
+    description: "Allow only specific license names. Format: comma separated license names"
+  ignore:
+    description: "Use the ignore input to specify package path prefixes to be ignored. For example, to ignore your organization's internal packages under github.com/example-corporation"
+
+branding:
+  icon: file-text
+  color: navy
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Go 1.21
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.21
+      id: go
+
+    - name: Run go mod vendor
+      run: go mod vendor
+      shell: bash
+
+    - name: Get google/go-licenses package
+      run: go install github.com/google/go-licenses@latest
+      shell: bash
+
+    - name: Run Check
+      run: ${{ github.action_path }}/run.sh ${{ inputs.allowedLicenses }} ${{ inputs.ignore }}
+      shell: bash
