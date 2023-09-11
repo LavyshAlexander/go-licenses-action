@@ -3,7 +3,7 @@ author: 'l'
 description: 'Check licenses in your go package and its dependencies'
 
 inputs:
-  allowedLicenses:
+  allowed-licenses:
     description: "Allow only specific license names. Format: comma separated license names"
   ignore:
     description: "Use the ignore input to specify package path prefixes to be ignored. For example, to ignore your organization's internal packages under github.com/example-corporation"
@@ -29,5 +29,5 @@ runs:
       shell: bash
 
     - name: Run Check
-      run: ${{ github.action_path }}/run.sh ${{ inputs.allowedLicenses }} ${{ inputs.ignore }}
+      run: ${{ github.action_path }}/run.sh ${{ inputs.allowed-licenses }} ${{ inputs.ignore }}
       shell: bash

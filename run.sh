@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 output=$(go-licenses check ./... --allowed_licenses="$1" --ignore="$2")
 
