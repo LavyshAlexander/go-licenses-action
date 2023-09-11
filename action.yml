@@ -25,7 +25,7 @@ runs:
       shell: bash
 
     - name: Get google/go-licenses package
-      run: go install github.com/google/go-licenses@latest
+      run: go install github.com/google/go-licenses@v1.0.0
       shell: bash
 
     - name: Run Check
